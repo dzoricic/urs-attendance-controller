@@ -11,6 +11,7 @@ BluetoothSerial SerialBT;
 void setup() {
   Serial.begin(115200); 
 
+  // SSID and Password are set on mobile hotspot, double check before presentation
   WiFi.begin("testingNetwork", "test12345");
   Serial.println(F("Connecting"));
 
@@ -29,6 +30,7 @@ void loop() {
     studentUuid.trim();
 
     HTTPClient http;
+    // Dynamic IP, changes every day and for every network, update on day of presentation
     String apiRequestPath = "http://192.168.225.97:8080/api/attendance/" + studentUuid;
 
     http.begin(apiRequestPath.c_str());
